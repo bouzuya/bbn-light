@@ -1,0 +1,202 @@
+/*
+ * Web Starter Kit
+ *
+ * Multi-screen layout styles for your page. Brought to you by the
+ * Web Starter Kit team.
+ *
+ */
+@import '_h5bp';
+
+/*
+ * Visual Style Guide styles
+ * Remove if you prefer to use a CSS library, like Bootstrap
+ */
+// @import 'components/components';
+
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+}
+
+body {
+  position: relative;
+  font-family: 'Roboto Condensed', Helvetica, Arial, sans-serif;
+  font-weight: 300;
+  background-color: #fff;
+  box-sizing: border-box;
+  min-height: 100%;
+}
+
+body.open {
+  overflow: hidden;
+}
+
+.promote-layer {
+  /*
+  This may promote the layer to a composited
+  layer.
+
+  Replace with will-change when available
+
+  #perfmatters
+  */
+  -webkit-backface-visibility: hidden;
+  backface-visibility: hidden;
+}
+
+.base,
+p,
+ul,
+ol {
+  font-size: 19px;
+}
+
+.navdrawer-container {
+  z-index: 1;
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  width: 250px;
+  height: 100%;
+  background-color: #3367D6;
+  color: #fefefe;
+  -webkit-transform: translate(-250px, 0);
+          transform: translate(-250px, 0);
+  overflow-y: auto;
+}
+
+.navdrawer-container.open {
+  -webkit-transform: translate(0, 0);
+          transform: translate(0, 0);
+}
+
+.navdrawer-container.opened,
+main {
+  -webkit-transition: -webkit-transform 0.3s ease-out;
+          transition: transform 0.3s ease-out;
+}
+
+.navdrawer-container h4,
+.navdrawer-container ul li a {
+  height: 60px;
+  padding: 17px 20px;
+  line-height: 1.4;
+}
+
+.navdrawer-container h4 {
+  background-color: white;
+  color: #3367D6;
+}
+
+.navdrawer-container ul {
+  padding: 0;
+  margin: 0;
+  list-style-type: none;
+}
+
+.navdrawer-container ul li a {
+  display: block;
+  text-decoration: none;
+  color: white;
+  -webkit-transition: background-color 0.2s ease-out;
+          transition: background-color 0.2s ease-out;
+  white-space: nowrap;
+}
+
+.navdrawer-container ul li {
+  border-bottom-style: solid;
+  border-width: 1px;
+  border-color: white;
+  padding: 0;
+}
+
+.navdrawer-container ul li::before {
+  content: none;
+}
+
+.navdrawer-container ul li a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+.navdrawer-container ul li a:focus {
+  background-color: rgba(255, 255, 255, 0.3);
+  outline: 0;
+}
+
+.navdrawer-container ul li a:active {
+  background-color: rgba(255, 255, 255, 0.4);
+}
+
+main {
+  margin: 0 auto;
+  padding: 16px 16px 16px 16px;
+  min-height: 100%;
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 300;
+  src: url(/fonts/RobotoCondensed-Light.eot);
+  src: local('Roboto Condensed Light'), local('RobotoCondensed-Light'), url(/fonts/RobotoCondensed-Light.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Light.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 400;
+  src: url(/fonts/RobotoCondensed-Regular.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Regular'), url(/fonts/RobotoCondensed-Regular.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Regular.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: normal;
+  font-weight: 700;
+  src: url(/fonts/RobotoCondensed-Bold.eot);
+  src: local('Roboto Condensed Regular'), local('RobotoCondensed-Bold'), url(/fonts/RobotoCondensed-Bold.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Bold.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 300;
+  src: url(/fonts/RobotoCondensed-LightItalic.eot);
+  src: local('Roboto Condensed Light Italic'), local('RobotoCondensed-LightItalic'), url(/fonts/RobotoCondensed-LightItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-LightItalic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 400;
+  src: url(/fonts/RobotoCondensed-Italic.eot);
+  src: local('Roboto Condensed Italic'), local('RobotoCondensed-Italic'), url(/fonts/RobotoCondensed-Italic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-Italic.woff) format('woff');
+}
+
+@font-face {
+  font-family: 'Roboto Condensed';
+  font-style: italic;
+  font-weight: 700;
+  src: url(/fonts/RobotoCondensed-BoldItalic.eot);
+  src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-BoldItalic.woff) format('woff');
+}
+
+.bbn-menu {
+  border: 1px solid #333;
+  border-radius: 4px;
+  padding: 12px;
+  ul {
+    margin: 0;
+    padding: 0;
+    li {
+      display: block;
+      list-style-type: none;
+      overflow: hidden;
+      text-overflow: ellipsis;
+      white-space: nowrap;
+    }
+  }
+}
