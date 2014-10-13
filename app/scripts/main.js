@@ -19,7 +19,7 @@
     });
   };
 
-  var savePostToCache = function(posts) {
+  var savePostsToCache = function(posts) {
     var sorted = posts.sort(function(p1, p2) {
       return p1.pubdate === p2.pubdate ? 0 : (p1.pubdate < p2.pubdate ? 1 : -1);
     });
@@ -28,25 +28,45 @@
   };
 
   var loadPostsFromCache = function() {
-    return cache.posts;
+    return cache.posts || [];
   };
 
   var renderPosts = function(posts) {
-    $('.bbn-menu ul').empty();
+    var articleList = $('.article-list');
+    articleList.empty();
     posts.filter(function(_, i) {
-      return i < 30;
+      return i < 31;
     }).forEach(function(post) {
-      var pubdate = post.pubdate.substring(0, 10);
-      var title = post.title;
-      // var tags = post.tags.map(function(tag) {
-      //   return '[' + tag + ']';
-      // }).join('');
-      var tags = '';
-      var a = '<a>' + pubdate + ' ' + title + ' ' + tags + '</a>';
-      var li = '<li>' + a + '</li>';
-      var e = $(li);
-      e.on('click', function() { fetchPost(post).then(renderPost); });
-      $('.bbn-menu ul').append(e);
+      // <li class="article-list-item">
+      //   <article class="article">
+      //     <header class="article-header">
+      //       <h1 class="title"></h1>
+      //       <span class="pubdate"></span>
+      //       <ul class="tags"></ul>
+      //     </header>
+      //     <div class="content"></div>
+      //   </article>
+      // </li>
+      var title = $('<h1 class="title">' + post.title + '</h1>');
+      var pubdate = '<span class="pubdate">' + post.pubdate.substring(0, 10) + '</span>';
+      var tags = '<ul class="tags"></ul>';
+      var header = $('<header class="article-header"></header>');
+      header.append(title);
+      header.append(pubdate);
+      header.append(tags);
+      var content = '<div class="content"></div>';
+      var article = $('<article class="article"></article>');
+      article.append(header);
+      article.append(content);
+      var li = $('<li class="article-list-item"></li>');
+      li.append(article);
+      var articleListItem = li;
+      title.one('click', function() {
+        fetchPost(post).then(function(post) {
+          renderPost(article, post);
+        });
+      });
+      articleList.append(articleListItem);
     });
   };
 
@@ -65,16 +85,25 @@
     });
   };
 
-  var renderPost = function(post) {
-    $('.bbn-main header h1').text(post.title);
-    $('.bbn-main header .pubdate').text(post.pubdate);
-    var tags = $('.bbn-main header .tags');
+  var renderPost = function(article, post) {
+    var title = article.find('.title');
+    var tags = article.find('.tags');
+    var content = article.find('.content');
     tags.empty();
     (post.tags || []).forEach(function(tag) {
-      var li = $('<li>' + tag + '</li>');
+      var li = $('<li class="tag">' + tag + '</li>');
       tags.append(li);
     });
-    $('.bbn-main .content').html(post.html);
+    content.html(post.html);
+    title.one('click', function() {
+      tags.empty();
+      content.empty();
+      title.one('click', function() {
+        fetchPost(post).then(function(post) {
+          renderPost(article, post);
+        });
+      });
+    });
   };
 
   var search = function() {
@@ -102,7 +131,7 @@
       .replace(new RegExp('\\?q=(.+)'), '$1')
       .split('+').join(' ');
 
-    fetchPosts().then(savePostToCache).then(renderPosts);
+    fetchPosts().then(savePostsToCache).then(renderPosts);
 
     var searchBox = $('.search #q');
     searchBox.on('keypress', function() {

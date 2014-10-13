@@ -32,24 +32,25 @@
   </head>
   <body class="container-fluid">
     <main class="row">
-      <nav class="bbn-menu col-md-4">
-        <form class="search" method="GET" action=".">
-          <input class="form-control" name="q" id="q" />
-          <span id="search-query"></span>
-          <span id="search-result"></span>
-        </form>
-        <ul></ul>
-      </nav>
+      <span id="search-query"></span>
+      <span id="search-result"></span>
 
-      <article class="bbn-main col-md-8">
-        <header>
-          <h1></h1>
-          <span class="pubdate"></span>
-          <ul class="tags"></ul>
-        </header>
-        <div class="content">
-        </div>
-      </article>
+      <form class="search" method="GET" action=".">
+        <input class="form-control" name="q" id="q" />
+      </form>
+
+      <ul class="article-list">
+        <li class="article-list-item">
+          <article class="article">
+            <header class="article-header">
+              <h1 class="title"></h1>
+              <span class="pubdate"></span>
+              <ul class="tags"></ul>
+            </header>
+            <div class="content"></div>
+          </article>
+        </li>
+      <ul>
     </main>
 
     <script src="//ajax.googleapis.com/ajax/libs/jquery/2.1.1/jquery.min.js"></script>

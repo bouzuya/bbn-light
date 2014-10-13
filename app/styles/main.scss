@@ -184,19 +184,60 @@ main {
   src: local('Roboto Condensed Bold Italic'), local('RobotoCondensed-BoldItalic'), url(/fonts/RobotoCondensed-BoldItalic.eot) format('embedded-opentype'), url(/fonts/RobotoCondensed-BoldItalic.woff) format('woff');
 }
 
-.bbn-menu {
-  border: 1px solid #333;
-  border-radius: 4px;
+.article-list {
+  max-width: 1200px;
   padding: 12px;
-  ul {
-    margin: 0;
-    padding: 0;
-    li {
-      display: block;
-      list-style-type: none;
+  list-style-type: none;
+  margin: 0 auto;
+  padding: 0;
+  .article-list-item {
+    display: block;
+    list-style-type: none;
+    margin-top: 32px;
+    // border-top: 4px solid #eee;
+
+    .article-header {
+      position: relative;
       overflow: hidden;
-      text-overflow: ellipsis;
-      white-space: nowrap;
+      .title {
+        text-overflow: ellipsis;
+        white-space: nowrap;
+
+        margin-top: 0;
+        margin-left: 15rem;
+        line-height: 1.4;
+        font-size: 150%;
+        font-weight: bold;
+      }
+      .title:hover {
+        cursor: pointer;
+      }
+      .pubdate {
+        position: absolute;
+        top: 0;
+        left: 0;
+        display: block;
+        line-height: 1.4;
+
+        font-size: 150%;
+        font-weight: bold;
+      }
+
+      .tags {
+        max-width: 900px;
+        margin: 0 auto;
+        padding: 0;
+        .tag {
+          display: inline-block;
+          text-decoration: underline;
+          padding-right: 1rem;
+        }
+      }
+    }
+
+    .content {
+      max-width: 900px;
+      margin: 0 auto;
     }
   }
 }
